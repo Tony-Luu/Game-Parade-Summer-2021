@@ -115,6 +115,8 @@ MonoBehaviour:
   keyCount: 0
   key: {fileID: 8936545667337713382}
   foundKeyText: {fileID: 0}
+  diggingText: {fileID: 0}
+  pickUpKeyText: {fileID: 0}
 --- !u!1001 &8126065196729191351
 PrefabInstance:
   m_ObjectHideFlags: 0
