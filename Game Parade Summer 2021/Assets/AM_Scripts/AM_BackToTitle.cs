@@ -25,9 +25,11 @@ public class AM_BackToTitle : MonoBehaviour
 
     IEnumerator Timer()
     {
-        yield return new WaitForSeconds(10.0f);
-        SceneManager.LoadScene(0);
-
+        if(SceneManager.GetActiveScene().name == "End Screen")
+        {
+            yield return new WaitForSeconds(10.0f);
+            LoadTitleScreen();
+        }
     }
 
     public void LoadTitleScreen()
