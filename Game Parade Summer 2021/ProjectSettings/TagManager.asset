@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shovel
+  - ObjectHolder
   layers:
   - Default
   - TransparentFX
