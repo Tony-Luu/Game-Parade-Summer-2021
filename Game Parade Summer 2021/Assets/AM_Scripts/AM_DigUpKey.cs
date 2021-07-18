@@ -20,6 +20,14 @@ public class AM_DigUpKey : MonoBehaviour
     public GameObject pickUpKeyText;
     public GameObject startDiggingText;
 
+    public GameObject shovel;
+    private AM_PickupObject pickUpScript;
+
+    private void Start()
+    {
+        pickUpScript = shovel.GetComponent<AM_PickupObject>();
+    }
+
     void Update()
     {
         DigAndGrabKey();
@@ -27,7 +35,7 @@ public class AM_DigUpKey : MonoBehaviour
 
     private void DigAndGrabKey()
     {
-        if (playerOnMud && !keyObtained)
+        if (playerOnMud && !keyObtained && pickUpScript.isShovelInHand)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -71,7 +79,7 @@ public class AM_DigUpKey : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (!keyObtained)
+            if (!keyObtained && pickUpScript.isShovelInHand)
             {
                 print("Start digging");
                 startDiggingText.SetActive(true);

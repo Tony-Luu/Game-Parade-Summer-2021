@@ -8,6 +8,7 @@ public class AM_BackToTitle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         StartCoroutine(Timer());
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -16,12 +17,10 @@ public class AM_BackToTitle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "End Screen")
         {
-            SceneManager.LoadScene(0);
+            LoadTitleScreen();
         }
-
-
     }
 
     IEnumerator Timer()
@@ -29,5 +28,10 @@ public class AM_BackToTitle : MonoBehaviour
         yield return new WaitForSeconds(10.0f);
         SceneManager.LoadScene(0);
 
+    }
+
+    public void LoadTitleScreen()
+    {
+        SceneManager.LoadScene(0);
     }
 }
