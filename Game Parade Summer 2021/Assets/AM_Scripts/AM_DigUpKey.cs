@@ -18,6 +18,7 @@ public class AM_DigUpKey : MonoBehaviour
     public GameObject foundKeyText;
     public GameObject diggingText;
     public GameObject pickUpKeyText;
+    public GameObject startDiggingText;
 
     void Update()
     {
@@ -30,6 +31,7 @@ public class AM_DigUpKey : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                startDiggingText.SetActive(false);
                 if (enter == false)
                     StartCoroutine(DiggingTimer());
 
@@ -69,6 +71,11 @@ public class AM_DigUpKey : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if (!keyObtained)
+            {
+                print("Start digging");
+                startDiggingText.SetActive(true);
+            }
             playerOnMud = true;
         }
     }
@@ -78,6 +85,7 @@ public class AM_DigUpKey : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             pickUpKeyText.SetActive(false);
+            startDiggingText.SetActive(false);
             playerOnMud = false;
         }
     }
