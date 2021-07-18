@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/AM_Scenes/Main Scenes/Title Screen.unity
     guid: 888c4cbfe77450049ac45b397e008b9b
   - enabled: 1
-    path: Assets/AM_Scenes/TEST Scenes/AM_Test.unity
-    guid: 8bab6d082357b624aba4f5ae0f559d2f
+    path: Assets/AM_Scenes/Main Scenes/SampleScene.unity
+    guid: 1a576729e37c365468b6704c07c64f82
+  - enabled: 1
+    path: Assets/AM_Scenes/Main Scenes/End Screen.unity
+    guid: 58973f29adb5ffc46bd8c68b656f1ae2
   m_configObjects: {}
