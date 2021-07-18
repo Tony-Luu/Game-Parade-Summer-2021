@@ -10,9 +10,9 @@ public class AM_PickupObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            transform.SetParent(other.gameObject.transform.GetChild(0).GetChild(0));
-            transform.position = other.gameObject.transform.GetChild(0).GetChild(0).transform.position;
-            transform.rotation = other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation;
+            transform.SetParent(GameObject.FindGameObjectWithTag("ObjectHolder").transform);
+            transform.position = GameObject.FindGameObjectWithTag("ObjectHolder").transform.position;
+            transform.rotation = GameObject.FindGameObjectWithTag("ObjectHolder").transform.rotation;
 
             if (this.gameObject.CompareTag("Shovel"))
             {
