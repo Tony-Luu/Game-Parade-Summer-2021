@@ -69,6 +69,9 @@ public class AM_DigUpKey : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         print("Digging done");
         diggingText.SetActive(false);
+        GameObject.FindGameObjectWithTag("Shovel").transform.parent = null;
+        GameObject.FindGameObjectWithTag("Shovel").GetComponent<Rigidbody>().isKinematic = false;
+        GameObject.FindGameObjectWithTag("Shovel").GetComponent<BoxCollider>().isTrigger = false;
 
         key.SetActive(true);
         keySpawned = true;
