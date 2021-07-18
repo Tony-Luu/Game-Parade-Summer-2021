@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Shovel
   - ObjectHolder
+  - Box
   layers:
   - Default
   - TransparentFX
