@@ -9,6 +9,8 @@ public class AM_BackToTitle : MonoBehaviour
     void Start()
     {
         StartCoroutine(Timer());
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
