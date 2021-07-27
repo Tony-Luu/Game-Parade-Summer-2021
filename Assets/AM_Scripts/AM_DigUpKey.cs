@@ -23,9 +23,14 @@ public class AM_DigUpKey : MonoBehaviour
     public GameObject shovel;
     private AM_PickupObject pickUpScript;
 
+    public GameObject player;
+
+    private AudioSource DiggingSound;
+
     private void Start()
     {
         pickUpScript = shovel.GetComponent<AM_PickupObject>();
+        DiggingSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -48,11 +53,13 @@ public class AM_DigUpKey : MonoBehaviour
             if (keySpawned && !keyObtained && playerOnMud)
             {
                 pickUpKeyText.SetActive(true);
+                startDiggingText.SetActive(false);
                 if (Input.GetKeyDown(KeyCode.G))
                 {
                     key.SetActive(false);
                     keyObtained = true;
                     keyCount++;
+
                     foundKeyText.SetActive(true);
                     pickUpKeyText.SetActive(false);
                     print("Key Obtained: " + keyName);
@@ -63,17 +70,29 @@ public class AM_DigUpKey : MonoBehaviour
 
     IEnumerator DiggingTimer()
     {
+        // Start digging
         enter = true;
+        DiggingSound.Play();
         print("Digging...");
+        player.GetComponent<TL_MoveCharacter>().enabled = false;
+        player.GetComponent<TL_JumpCharacter>().enabled = false;
         diggingText.SetActive(true);
+
         yield return new WaitForSeconds(3.0f);
+
+        // Finish digging
         print("Digging done");
+        player.GetComponent<TL_MoveCharacter>().enabled = true;
+        player.GetComponent<TL_JumpCharacter>().enabled = true;
+        DiggingSound.Stop();
         diggingText.SetActive(false);
 
-        GameObject.FindGameObjectWithTag("Shovel").transform.parent = null;
-        GameObject.FindGameObjectWithTag("Shovel").GetComponent<Rigidbody>().isKinematic = false;
-        GameObject.FindGameObjectWithTag("Shovel").GetComponent<BoxCollider>().isTrigger = false;
+        // Drop shovel after use
+        GameObject.FindGameObjectWithTag("ObjectHolder").transform.GetChild(0).GetComponent<Rigidbody>().isKinematic = false;
+        GameObject.FindGameObjectWithTag("ObjectHolder").transform.GetChild(0).GetComponent<BoxCollider>().isTrigger = false;
+        GameObject.FindGameObjectWithTag("ObjectHolder").transform.GetChild(0).parent = null;
 
+        // Spawn a key
         key.SetActive(true);
         keySpawned = true;
         enter = false;

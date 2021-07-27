@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class AM_MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject optionsMenu;
+
 
     private void Start()
     {
@@ -16,6 +16,7 @@ public class AM_MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        AM_Music.instance.StopMusic();
         SceneManager.LoadScene(1);
     }
 

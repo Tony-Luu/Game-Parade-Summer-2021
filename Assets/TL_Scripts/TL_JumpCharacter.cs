@@ -33,13 +33,20 @@ public class TL_JumpCharacter : MonoBehaviour
 
     void JumpVelocity()
     {
+        //If the player is ready to jump
         if (readyToJump)
         {
+            //Reset the velocity of the player first
             CharacterRigidbody.velocity = Vector3.zero;
+
+            //Then add upwards velocity with the jump height
             CharacterRigidbody.velocity = Vector3.up * JumpHeight;
+
+            //Switch the bool to false
             readyToJump = false;
         }
 
+        //If the player's velocity is not 0, make the player's arms match the velocity of the player
         if (CharacterRigidbody.velocity.y != 0f)
         {
             foreach (Transform Child in transform)
@@ -53,6 +60,7 @@ public class TL_JumpCharacter : MonoBehaviour
         }
         else
         {
+            //If the player's velocity is 0, reset the position of the player's arms and the velocity
             foreach (Transform Child in transform)
             {
                 Rigidbody ChildRigidbody = Child.GetComponent<Rigidbody>();

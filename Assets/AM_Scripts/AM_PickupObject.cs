@@ -1,19 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AM_PickupObject : MonoBehaviour
 {
     public bool isShovelInHand = false;
+    private AudioSource PickupShovelSound;
 
-    private void Update()
+
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.E) && GameObject.FindGameObjectWithTag("Box").transform.parent != null)
-        {
-            GameObject.FindGameObjectWithTag("Box").transform.parent = null;
-            GameObject.FindGameObjectWithTag("Box").GetComponent<Rigidbody>().isKinematic = false;
-            GameObject.FindGameObjectWithTag("Box").GetComponent<BoxCollider>().isTrigger = false;
-        }
+        PickupShovelSound = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,8 +19,9 @@ public class AM_PickupObject : MonoBehaviour
             transform.position = GameObject.FindGameObjectWithTag("ObjectHolder").transform.position;
             transform.rotation = GameObject.FindGameObjectWithTag("ObjectHolder").transform.rotation;
 
-            if (this.gameObject.CompareTag("Shovel"))
+            if (gameObject.CompareTag("Shovel"))
             {
+                PickupShovelSound.Play();
                 isShovelInHand = true;
             }
         }
